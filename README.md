@@ -8,12 +8,6 @@ V.R.I.V.E. is a powerful, real-time intelligence and visualization tool designed
 Watch the video below to see V.R.I.V.E. in action:
 
 https://youtu.be/tDkbJiLuRIc
-![WhatsApp Image 2025-08-31 at 12 03 42_ea9e6db3](https://github.com/user-attachments/assets/f6bfd2a2-4d8b-4638-bd2f-58dcdc035a4d)
-
-![WhatsApp Image 2025-08-31 at 12 04 07_ba53a9b7](https://github.com/user-attachments/assets/f68b97cc-3da8-4960-8897-b8cff7388af8)
-
-![WhatsApp Image 2025-08-31 at 12 04 25_c34a9f24](https://github.com/user-attachments/assets/3bdaefcf-5caa-431b-b416-4f876dbbfb9b)
-
 
 
 🎯 The Problem
@@ -60,38 +54,75 @@ Mapping: Leaflet.js (or a similar mapping library)
 
 IP Intelligence: IP geolocation APIs
 
-🚀 How to Run V.R.I.V.E.
-Important: You must run all commands in a Command Prompt (CMD) with Administrator privileges.
+HOW THE V.R.I.V.E. LIVE MONITORING WORKS
 
-![WhatsApp Image 2025-08-31 at 12 05 24_d40f90be](https://github.com/user-attachments/assets/b23189ff-2431-4792-9f00-d0fa101c2b14)
+STEP 1: OPERATOR INITIALIZATION
+- The process begins when the operator opens the web dashboard.
+- A "Mission Start" dialog appears, prompting the user to input their current Latitude and Longitude.
+- This manual input guarantees a reliable starting point for the trace.
 
-![WhatsApp Image 2025-08-31 at 12 05 39_04e58884](https://github.com/user-attachments/assets/ef6d57c2-c319-4ef1-8f08-701a2f7cb3e6)
+ ![WhatsApp Image 2025-08-31 at 12 05 24_38764b16](https://github.com/user-attachments/assets/441bf9c8-9910-4d1b-8401-f4c36a5798cf)
 
 
+STEP 2: BACKEND ACTIVATION
+- When the operator clicks "Start Tracing", the coordinates are sent to the Python backend via a WebSocket connection.
+- Upon receiving this signal, the backend sets the operator's location and immediately activates the core packet sniffing engine on the specified network interface.
+- A "LISTENING" status is sent back to the UI, providing visual confirmation that the system is live.
 
-Clone the Repository
+  
 
-git clone [https://github.com/your-username/vrive.git](https://github.com/your-username/vrive.git)
-cd vrive
+STEP 3: LIVE PACKET CAPTURE
+- The engine uses the Scapy library to sniff all network traffic in real-time.
+- It is specifically configured to filter and analyze two types of packets:
+  1. DNS packets (on Port 53)
+  2. UDP packets (the protocol used by most real-time voice and video streams)
 
-Install Dependencies
-Open CMD as Administrator and run:
+  ![WhatsApp Image 2025-08-31 at 12 05 39_6c376e3c](https://github.com/user-attachments/assets/2e92d370-3c0e-4da5-bd24-104c286aea5d)
 
-pip install -r requirements.txt
 
-If the above command doesn't work, try using pip3:
+STEP 4: THE HYBRID DETECTION ENGINE
+The system uses a two-stage process to intelligently identify VoIP calls from background noise.
 
-pip3 install -r requirements.txt
+- STAGE 1: DNS INTELLIGENCE
+  - The engine inspects all outgoing DNS queries. If it sees a request for a known VoIP-related hostname (like 'whatsapp.net', 'telegram.org', or generic services like 'stun' and 'turn'), it reads the IP address from the DNS response.
+  - This IP is dynamically flagged as a high-confidence VoIP server. This method allows the tool to find the correct server even if its IP address changes frequently.
 
-Run the Backend Server
-In the same Administrator CMD window, run:
+- STAGE 2: HEURISTIC ANALYSIS
+  - For all other UDP traffic, the engine acts as a profiler. It tracks every external IP address the computer communicates with.
+  - It maintains a count of packets sent to each IP within a short time window (e.g., 4 seconds).
+  - If the number of packets to a single IP crosses a set threshold (e.g., 25 packets), the system flags it as a "Probable VoIP Stream" based on its high-volume, continuous behavior.
 
-python3 analyzer.py
+STEP 5: TRIGGERING THE FULL ANALYSIS
+- Once an IP is flagged as a VoIP server by either the DNS or Heuristic engine, the system initiates a full forensic analysis on that IP.
+- The system is stateful; it understands it's in an "active call" and will treat subsequent IPs from the same service as server hops, not new calls.
 
-Open the Web Interface
-Navigate to the following URL in your web browser:
+STEP 6: DATA ENRICHMENT AND REPORTING
+- The flagged IP is sent to the IPinfo.io API to retrieve its metadata:
+  - GEOLOCATION: The server's City and Country.
+  - OWNERSHIP: The name of the company that owns the IP (e.g., "Telegram Messenger Inc" or "Google LLC").
+  - ANONYMITY STATUS: Whether the IP is a known VPN or proxy.
+- A TRACEROUTE is performed to map the entire network path from the operator to the server, and each hop is geolocated.
+- A CONFIDENCE SCORE is calculated based on the consistency of the traceroute path and the VPN status.
+- The system automatically generates a detailed JSON evidence report upon call termination.
 
-[http://12.0.0.1:5000](http://12.0.0.1:5000)
+STEP 7: REAL-TIME VISUALIZATION
+- All the analyzed data is packaged and pushed instantly to the frontend UI via WebSockets.
+- The JavaScript in the browser receives this data and updates all dashboard elements without a page refresh:
+  - The map plots the full traceroute path.
+  - The information panels are populated with location and ownership details.
+  - The widgets are updated with the call duration and distance.
+
+![WhatsApp Image 2025-08-31 at 12 03 42_6e6b6a9e](https://github.com/user-attachments/assets/1318ff23-e9ee-4095-9d24-c3ce1522a8a2)
+
+![WhatsApp Image 2025-08-31 at 12 04 07_0413ef6c](https://github.com/user-attachments/assets/7f802ec0-1fb5-465b-a46f-382fd33b8abe)
+
+![WhatsApp Image 2025-08-31 at 12 04 25_60d20614](https://github.com/user-attachments/assets/415932d0-d524-4882-8b60-e869ea2a6987)
+
+
+STEP 8: SESSION TERMINATION
+- The backend continuously monitors the active call.
+- If no packets are seen from the VoIP service for a set period (e.g., 10 seconds), the system automatically declares the call has ended.
+- It sends a final signal to the UI to stop the timer and clear the map, ready for the next trace.
 
 🧑‍💻 Usage
 Once the UI is loaded, enter the operator's current coordinates (Latitude and Longitude).
