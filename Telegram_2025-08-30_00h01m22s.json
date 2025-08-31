@@ -1,0 +1,153 @@
+{
+    "case_id": "VRIVE_1756583008",
+    "service_provider": "Telegram",
+    "call_start_timestamp_utc": "2025-08-30T19:42:05.641573Z",
+    "call_duration": "00h01m22s",
+    "operator_details": {
+        "public_ip": "14.194.135.206",
+        "latitude": 23.1688,
+        "longitude": 77.1678
+    },
+    "subject_details": {
+        "server_ips_used": [
+            "91.108.9.20",
+            "91.108.13.5",
+            "91.108.17.10",
+            "91.108.17.56",
+            "91.108.13.7"
+        ]
+    },
+    "initial_network_path": {
+        "traced_ip": "91.108.13.7",
+        "hops": [
+            {
+                "ip": "91.108.13.7",
+                "city": "Miami",
+                "region": "Florida",
+                "country": "US",
+                "loc": "25.8001,-80.2810",
+                "org": "AS59930 Telegram Messenger Inc",
+                "postal": "33122",
+                "timezone": "America/New_York",
+                "owner": "Telegram Messenger Inc"
+            },
+            {
+                "ip": "14.194.135.205",
+                "hostname": "static-205.135.194.14-tataidc.co.in",
+                "city": "Ashta",
+                "region": "Madhya Pradesh",
+                "country": "IN",
+                "loc": "23.0175,76.7221",
+                "org": "AS45820 Tata Teleservices ISP AS",
+                "postal": "466116",
+                "timezone": "Asia/Kolkata",
+                "owner": "Tata Teleservices ISP AS"
+            },
+            {
+                "ip": "121.241.90.101",
+                "hostname": "121.241.90.101.static-ahmedabad.vsnl.net.in",
+                "city": "Ahmedabad",
+                "region": "Gujarat",
+                "country": "IN",
+                "loc": "23.0258,72.5873",
+                "org": "AS4755 TATA Communications formerly VSNL is Leading ISP",
+                "postal": "380001",
+                "timezone": "Asia/Kolkata",
+                "owner": "TATA Communications formerly VSNL is Leading ISP"
+            },
+            {
+                "ip": "180.87.38.5",
+                "hostname": "ix-ae-0-100.tcore1.mlv-mumbai.as6453.net",
+                "city": "Mumbai",
+                "region": "Maharashtra",
+                "country": "IN",
+                "loc": "19.0728,72.8826",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "400017",
+                "timezone": "Asia/Kolkata",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "180.87.38.2",
+                "hostname": "if-ae-2-2.tcore2.mlv-mumbai.as6453.net",
+                "city": "Mumbai",
+                "region": "Maharashtra",
+                "country": "IN",
+                "loc": "19.0728,72.8826",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "400017",
+                "timezone": "Asia/Kolkata",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "180.87.39.21",
+                "hostname": "if-bundle-12-2.qcore4.ldn-london.as6453.net",
+                "city": "Mumbai",
+                "region": "Maharashtra",
+                "country": "IN",
+                "loc": "19.0728,72.8826",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "400017",
+                "timezone": "Asia/Kolkata",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "195.219.213.138",
+                "city": "London",
+                "region": "England",
+                "country": "GB",
+                "loc": "51.5085,-0.1257",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "E1W",
+                "timezone": "Europe/London",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "80.231.196.36",
+                "hostname": "if-bundle-13-2.qcore2.pye-paris.as6453.net",
+                "city": "Paris",
+                "region": "\u00cele-de-France",
+                "country": "FR",
+                "loc": "48.8534,2.3488",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "75000",
+                "timezone": "Europe/Paris",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "63.243.137.148",
+                "city": "Ashburn",
+                "region": "Virginia",
+                "country": "US",
+                "loc": "39.0437,-77.4875",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "20147",
+                "timezone": "America/New_York",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "66.198.11.91",
+                "hostname": "if-bundle-5-2.qcore1.mln-miami.as6453.net",
+                "city": "Ashburn",
+                "region": "Virginia",
+                "country": "US",
+                "loc": "39.0437,-77.4875",
+                "org": "AS6453 TATA COMMUNICATIONS (AMERICA) INC",
+                "postal": "20147",
+                "timezone": "America/New_York",
+                "owner": "TATA COMMUNICATIONS (AMERICA) INC"
+            },
+            {
+                "ip": "91.108.13.7",
+                "city": "Miami",
+                "region": "Florida",
+                "country": "US",
+                "loc": "25.8001,-80.2810",
+                "org": "AS59930 Telegram Messenger Inc",
+                "postal": "33122",
+                "timezone": "America/New_York",
+                "owner": "Telegram Messenger Inc"
+            }
+        ]
+    }
+}

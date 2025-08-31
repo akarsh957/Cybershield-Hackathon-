@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V.R.I.V.E. - Digital Forensics Dashboard</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="start-modal-backdrop">
+        <div id="start-modal">
+            <h2>V.R.I.V.E. - Mission Start</h2>
+            <p>Enter operator's coordinates to begin monitoring.</p>
+            <div class="form-group">
+                <label for="lat-input">Latitude:</label>
+                <input type="text" id="lat-input" placeholder="e.g., 23.1688" value="23.1688">
+            </div>
+            <div class="form-group">
+                <label for="lon-input">Longitude:</label>
+                <input type="text" id="lon-input" placeholder="e.g., 77.1678" value="77.1678">
+            </div>
+            <button id="start-tracing-btn">Start Tracing</button>
+            <p id="modal-error"></p>
+        </div>
+    </div>
+
+    <header>
+        <h1>V.R.I.V.E. - VoIP Real-time Intelligence & Visualization Engine</h1>
+    </header>
+
+    <main>
+        <div id="map"></div>
+        <div id="status-panel" class="info-panel">
+            <h2>STATUS</h2>
+            <p id="status-text">AWAITING COMMAND</p>
+        </div>
+        <div id="operator-panel" class="info-panel">
+            <h2>OPERATOR LOCATION</h2>
+            <p><strong>Lat:</strong> <span id="op-lat">--</span></p>
+            <p><strong>Lon:</strong> <span id="op-lon">--</span></p>
+        </div>
+        <div id="subject-panel" class="info-panel">
+            <h2>SUBJECT LOCATION (ESTIMATED)</h2>
+            <p><strong>Country:</strong> <span id="sub-country">--</span></p>
+            <p><strong>City:</strong> <span id="sub-city">--</span></p>
+            <p><strong>IP Address:</strong> <span id="sub-ip">--</span></p>
+            <p><strong>Owner:</strong> <span id="sub-owner">--</span></p>
+            <p id="confidence-score"><strong>Confidence:</strong> <span id="sub-confidence">--</span>%</p>
+        </div>
+        <div class="widget-container">
+            <div class="widget">
+                <div class="label">DISTANCE</div>
+                <div class="value"><span id="distance-value">--</span> KM</div>
+            </div>
+            <div class="widget">
+                <div class="label">LIVE CALL DURATION</div>
+                <div class="value" id="duration-value">00:00:00</div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
