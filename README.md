@@ -10,6 +10,11 @@ Watch the video below to see V.R.I.V.E. in action:
 https://youtu.be/tDkbJiLuRIc
 ![WhatsApp Image 2025-08-31 at 12 03 42_ea9e6db3](https://github.com/user-attachments/assets/f6bfd2a2-4d8b-4638-bd2f-58dcdc035a4d)
 
+![WhatsApp Image 2025-08-31 at 12 04 07_ba53a9b7](https://github.com/user-attachments/assets/f68b97cc-3da8-4960-8897-b8cff7388af8)
+
+![WhatsApp Image 2025-08-31 at 12 04 25_c34a9f24](https://github.com/user-attachments/assets/3bdaefcf-5caa-431b-b416-4f876dbbfb9b)
+
+
 
 🎯 The Problem
 Malicious actors, scammers, and criminals frequently exploit the anonymity of encrypted VoIP services (like Telegram, Signal, etc.) to carry out illegal activities without revealing their location. Tracing these calls is a complex and often time-consuming process that requires deep network analysis, usually performed after the fact. This delay allows perpetrators to relocate, making them difficult to apprehend.
